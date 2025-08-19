@@ -1,63 +1,59 @@
-Customer Churn Prediction & Dashboard 📊
-📌 Project Overview
+# 📊 Customer Churn Prediction & Dashboard  
 
-This project focuses on predicting customer churn for a telecommunications dataset and visualizing key insights through Tableau dashboards. The workflow integrates machine learning (Python in Google Colab) with business intelligence (Tableau) to provide actionable insights for retention strategies.
+## 📌 Project Overview  
+This project predicts customer churn for a telecommunications company using **machine learning (Python in Google Colab)** and visualizes insights through **Tableau dashboards**. The goal is to help businesses identify at-risk customers and improve retention strategies by combining **predictive modeling** with **interactive business intelligence**.  
 
-🚀 Key Steps
+---
 
-Data Preparation (Colab)
+## 🚀 Key Steps  
 
-Cleaned telco dataset (tenure, monthly charges, total charges, contract type, etc.).
+### 1. Data Preparation (Google Colab)  
+- Cleaned telco dataset (tenure, monthly charges, total charges, contract type, etc.).  
+- Engineered new features (Tenure Buckets, Churn Flag, Churn Rate %).  
+- Built ML models to predict churn probability.  
+- Exported outputs:  
+  - `churn_prediction.csv` → customer churn probability results.  
+  - `feature_importance_top20.csv` → top 20 drivers of churn.  
 
-Engineered new features (Tenure Buckets, Churn Flag, Churn Rate %).
+### 2. Tableau Dashboard  
+- Imported cleaned dataset + ML outputs.  
+- Created KPIs: **Churn Rate %, Total Customers, Avg. Monthly Charges**.  
+- Built calculated fields: Churn Flag, Tenure Buckets, Predicted Class.  
+- Added interactive filters: **Contract, Internet Service, Payment Method, Senior Citizen**.  
+- Implemented parameterized **Probability Threshold** for flexible classification.  
+- Designed intuitive dashboards for executives to track churn trends.  
 
-Trained machine learning models to predict churn probability.
+---
 
-Exported churn probability results & top 20 feature importance as CSVs.
+## 📊 Deliverables  
+- **Machine Learning Output:** CSV files with predictions & feature importance.  
+- **Tableau Dashboard:** Visual insights by tenure, contract type, charges, and customer segments.  
+- **KPIs & Filters:** Business-friendly indicators for decision-making.  
 
-Tableau Dashboard
+---
 
-Imported cleaned dataset and model results.
+## 🛠️ Tech Stack  
+- **Python (Google Colab):** Data preprocessing, model training, predictions.  
+- **Pandas, Scikit-learn:** Data wrangling & ML.  
+- **Tableau:** Interactive dashboards & visualization.  
 
-Created KPIs: Churn Rate %, Total Customers, Avg. Monthly Charges.
+---
 
-Built calculated fields: Churn Flag, Tenure Buckets, Predicted Class.
+## 🎯 Outcomes  
+- Identified **top churn drivers** (e.g., contract type, tenure, monthly charges).  
+- Highlighted **high-risk customers** using model predictions.  
+- Delivered a **data-driven decision support system** for customer retention.  
 
-Designed interactive dashboards with filters (Contract, Internet Service, Payment Method, Senior Citizen).
+---
 
-Added parameterized Probability Threshold for flexible churn classification.
+## 📌 Usage Instructions  
+1. Open Tableau → Connect Data → Load `telco_clean.csv`, `churn_prediction.csv`, and `feature_importance_top20.csv`.  
+2. Create calculated fields & filters (Contract, Internet Service, Payment Method, Senior Citizen).  
+3. Build dashboards with KPIs and apply filters.  
+4. Use parameterized **Probability Threshold** to adjust churn classification.  
+5. Explore churn insights to support retention strategies.  
 
-📊 Deliverables
+---
 
-ML Model Output: CSV with churn predictions & top features.
-
-Tableau Dashboard: Visual insights on churn by tenure, contract type, charges, and customer segments.
-
-KPIs & Filters: Business-friendly indicators for decision-making.
-
-🛠️ Tech Stack
-
-Python (Google Colab): Data preprocessing, churn prediction, feature importance.
-
-Pandas, Scikit-learn: Data wrangling & model building.
-
-Tableau: Interactive dashboard creation & visualization.
-
-🎯 Outcomes
-
-Identified top drivers of churn (e.g., contract type, tenure, monthly charges).
-
-Enabled businesses to track high-risk customers with dynamic thresholds.
-
-Provided a data-driven decision support system for customer retention.
-
-📌 Usage
-
-Open customers_clean.csv, churn_prediction.csv, and feature_importance_top20.csv in Tableau.
-
-Load calculated fields and create visualizations.
-
-Explore dashboards to analyze churn trends & retention strategies.
-
-✨ This project bridges Machine Learning + Business Intelligence, helping organizations move from predictions to actionable insights.
+✨ This project bridges **Machine Learning + Business Intelligence**, helping organizations move from **predictions to actionable insights**.  
 
