@@ -1,0 +1,73 @@
+DROP TABLE IF EXISTS customers_clean;
+
+CREATE TABLE customers_clean (
+    customerID TEXT PRIMARY KEY,
+    gender TEXT,
+    SeniorCitizen INTEGER,
+    Partner TEXT,
+    Dependents TEXT,
+    tenure INTEGER,
+    PhoneService TEXT,
+    MultipleLines TEXT,
+    InternetService TEXT,
+    OnlineSecurity TEXT,
+    OnlineBackup TEXT,
+    DeviceProtection TEXT,
+    TechSupport TEXT,
+    StreamingTV TEXT,
+    StreamingMovies TEXT,
+    Contract TEXT,
+    PaperlessBilling TEXT,
+    PaymentMethod TEXT,
+    MonthlyCharges REAL,
+    TotalCharges REAL,
+    Churn TEXT,
+
+    -- Helpful engineered columns
+    Churn_Flag INTEGER,
+    Tenure_Bucket TEXT,
+    Has_Fiber INTEGER,
+    Has_Streaming INTEGER
+);
+INSERT INTO customers_clean
+SELECT
+    customerID,
+    gender,
+    CAST(SeniorCitizen AS INTEGER),
+    Partner,
+    Dependents,
+    CAST(tenure AS INTEGER),
+    PhoneService,
+    MultipleLines,
+    InternetService,
+    OnlineSecurity,
+    OnlineBackup,
+    DeviceProtection,
+    TechSupport,
+    StreamingTV,
+    StreamingMovies,
+    Contract,
+    PaperlessBilling,
+    PaymentMethod,
+    CAST(MonthlyCharges AS REAL),
+    CAST(NULLIF(TotalCharges, '') AS REAL),
+    Churn,
+
+    CASE WHEN Churn='Yes' THEN 1 ELSE 0 END AS Churn_Flag,
+
+    CASE
+      WHEN CAST(tenure AS INTEGER) < 6 THEN '0-5'
+      WHEN CAST(tenure AS INTEGER) BETWEEN 6 AND 12 THEN '6-12'
+      WHEN CAST(tenure AS INTEGER) BETWEEN 13 AND 24 THEN '13-24'
+      WHEN CAST(tenure AS INTEGER) BETWEEN 25 AND 48 THEN '25-48'
+      ELSE '49+' END AS Tenure_Bucket,
+
+    CASE WHEN InternetService='Fiber optic' THEN 1 ELSE 0 END AS Has_Fiber,
+
+    CASE WHEN StreamingTV='Yes' OR StreamingMovies='Yes' THEN 1 ELSE 0 END AS Has_Streaming
+FROM customers_raw;
+CREATE INDEX IF NOT EXISTS idx_churnflag ON customers_clean(Churn_Flag);
+CREATE INDEX IF NOT EXISTS idx_contract ON customers_clean(Contract);
+CREATE INDEX IF NOT EXISTS idx_tenure ON customers_clean(tenure);
+SELECT * FROM customers_clean LIMIT 10;
+
